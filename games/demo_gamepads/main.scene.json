@@ -1,0 +1,80 @@
+{
+  "world": {
+    "defs": "demo_gamepads",
+    "predict": { "epsilon": 0.000001, "cutoff": 60, "halflife": 100, "snap": 5, "below": 0.001 },
+    "loader": {
+      "assets": {
+        "demo_gamepads": {
+          "type": "json",
+          "url": "/games/demo_gamepads/assets/demo_gamepads.json",
+          "preload": true
+        }
+      }
+    },
+    "ui": {
+      "panels": {
+        "viewer": { "anchor": "top-left", "at": [0, 0], "size": [1280, 720] }
+      },
+      "styles": {
+        "viewer.back": { "color": 1316637 },
+        "viewer.frame": { "color": 5988976, "width": 2 },
+        "viewer.rule": { "color": 2764600, "width": 1 },
+        "viewer.lit": { "color": 16738867 },
+        "viewer.pressed": { "color": 16738867, "width": 2 },
+        "viewer.dim": { "color": 3422789 },
+        "viewer.track": { "color": 2040619 },
+        "viewer.fill": { "color": 6273279 },
+        "viewer.dead": { "color": 4870496, "width": 2 },
+        "viewer.dot": { "color": 15527666 },
+        "viewer.body": { "color": 2237998 },
+        "viewer.edge": { "color": 4015184, "width": 2 },
+        "viewer.well": { "color": 987670 },
+        "viewer.cap": { "color": 4870496 },
+        "viewer.capedge": { "color": 7041923, "width": 2 },
+        "viewer.ink": { "color": 1316637 },
+        "viewer.title": { "fontFamily": "Helvetica Neue, Arial, sans-serif", "fontSize": 28, "fontWeight": "bold", "fill": 15527666 },
+        "viewer.text": { "fontFamily": "Helvetica Neue, Arial, sans-serif", "fontSize": 15, "fill": 15527666 },
+        "viewer.held": { "fontFamily": "Helvetica Neue, Arial, sans-serif", "fontSize": 15, "fill": 15527666, "wordWrap": true, "wordWrapWidth": 580, "lineHeight": 22 },
+        "viewer.muted": { "fontFamily": "Helvetica Neue, Arial, sans-serif", "fontSize": 13, "fill": 10133933 },
+        "viewer.header": { "fontFamily": "Helvetica Neue, Arial, sans-serif", "fontSize": 12, "fontWeight": "bold", "letterSpacing": 1, "fill": 10133933 },
+        "viewer.mark": { "fontFamily": "Helvetica Neue, Arial, sans-serif", "fontSize": 14, "fontWeight": "bold", "fill": 15527666 },
+        "viewer.mono": { "fontFamily": "Menlo, Consolas, monospace", "fontSize": 12, "fill": 15527666 }
+      }
+    }
+  },
+  "plugins": [
+    "loader",
+    "scenemanager",
+    "player",
+    "ui"
+  ],
+  "seats": 1,
+  "prefabs": {
+    "engine": {
+      "dt": 0.016666666666666666,
+      "width": 1280,
+      "height": 720
+    },
+    "scenemanager": {
+      "out": {}
+    },
+    "loader": {},
+    "player": {
+      "seat": 0,
+      "inputs": {},
+      "presses": {}
+    },
+    "viewer": {}
+  },
+  "actors": [
+    {
+      "is": "scenemanager"
+    },
+    {
+      "is": "loader"
+    },
+    {
+      "is": "viewer"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "world": {
+    "player": {
+      "actions": {
+        "move": { "label": "Move", "keys": [["ArrowLeft", "a", "Pad14", "PadStickLeft"], ["ArrowRight", "d", "Pad15", "PadStickRight"], ["ArrowUp", "w", "Pad12", "PadStickUp"], ["ArrowDown", "s", "Pad13", "PadStickDown"]] },
+        "look": { "label": "Look", "keys": [["j", "PadRightStickLeft"], ["l", "PadRightStickRight"], ["i", "PadRightStickUp"], ["k", "PadRightStickDown"]] },
+        "confirm": { "label": "Confirm", "keys": ["Enter", " ", "Pad0"] },
+        "back": { "label": "Back", "keys": ["Backspace", "Pad1"] },
+        "action": { "label": "Action", "keys": ["f", "Pad2"] },
+        "alternate": { "label": "Alternate", "keys": ["r", "Pad3"] },
+        "previous": { "label": "Previous", "keys": ["q", "Pad4"] },
+        "next": { "label": "Next", "keys": ["e", "Pad5"] },
+        "secondary": { "label": "Secondary", "keys": ["Mouse2", "Pad6"] },
+        "primary": { "label": "Primary", "keys": ["Mouse0", "Pad7"] },
+        "view": { "label": "View", "keys": ["Tab", "Pad8"] },
+        "menu": { "label": "Menu", "keys": ["Escape", "Pad9"] },
+        "leftpress": { "label": "Left stick press", "keys": ["Shift", "Pad10"] },
+        "rightpress": { "label": "Right stick press", "keys": ["c", "Pad11"] }
+      },
+      "deadzone": 0.15,
+      "resolution": 100
+    }
+  },
+  "prefabs": {
+    "engine": {
+      "dt": 0.016666666666666666
+    },
+    "scenemanager": {
+      "scenes": {
+        "main": {
+          "file": "main.scene.json",
+          "suspend": true
+        }
+      },
+      "dt": 0.016666666666666666,
+      "entry": "main",
+      "port": 9125
+    }
+  },
+  "actors": [
+    {
+      "is": "scenemanager"
+    }
+  ],
+  "plugins": [
+    "scenemanager"
+  ],
+  "seats": 1
+}

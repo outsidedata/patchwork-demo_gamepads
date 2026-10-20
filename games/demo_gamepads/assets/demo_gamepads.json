@@ -1,0 +1,137 @@
+{
+  "viewer": {
+    "panel": "viewer",
+    "title": { "at": [40, 36], "anchor": [0, 0.5], "text": "Controller inputs" },
+    "status": { "at": [40, 72], "anchor": [0, 0.5], "line": "Last used: {device}   ·   Gamepads connected: {count}" },
+    "devices": { "keyboard": "keyboard and mouse", "xbox": "Xbox gamepad", "playstation": "PlayStation gamepad", "pad": "gamepad" },
+
+    "diagram": {
+      "at": [40, 104],
+      "size": [580, 380],
+      "radius": 12,
+      "heading": { "at": [290, 352], "anchor": [0.5, 0.5], "line": "Gamepad {index}: {family}{mapping}", "unmapped": " (not standard-mapped: read the raw buttons below)" },
+      "none": { "at": [290, 190], "anchor": [0.5, 0.5], "text": "No gamepad connected. Press a button on a gamepad to wake it." },
+      "rim": 2,
+      "layoutOf": { "xbox": "xbox", "playstation": "playstation", "pad": "xbox" },
+      "body": [
+        ["M", 290, 128],
+        ["C", 360, 128, 400, 120, 444, 126],
+        ["C", 504, 136, 532, 170, 544, 220],
+        ["C", 560, 290, 566, 350, 524, 368],
+        ["C", 490, 380, 462, 360, 444, 334],
+        ["C", 428, 312, 408, 318, 380, 318],
+        ["L", 200, 318],
+        ["C", 172, 318, 152, 312, 136, 334],
+        ["C", 118, 360, 90, 380, 56, 368],
+        ["C", 14, 350, 20, 290, 36, 220],
+        ["C", 48, 170, 76, 136, 136, 126],
+        ["C", 180, 120, 220, 128, 290, 128]
+      ],
+      "triggers": [
+        { "button": 6, "at": [118, 12], "size": [58, 86], "radius": 14, "label": [147, 30] },
+        { "button": 7, "at": [404, 12], "size": [58, 86], "radius": 14, "label": [433, 30] }
+      ],
+      "bumpers": [
+        { "button": 4, "at": [74, 102], "size": [150, 24], "radius": 12 },
+        { "button": 5, "at": [356, 102], "size": [150, 24], "radius": 12 }
+      ],
+      "layouts": {
+        "xbox": {
+          "sticks": [
+            { "axes": [0, 1], "button": 10, "at": [165, 200], "radius": 36, "cap": 15, "label": [165, 252] },
+            { "axes": [2, 3], "button": 11, "at": [360, 262], "radius": 32, "cap": 14, "label": [360, 306] }
+          ],
+          "dpad": { "at": [222, 262], "cell": 22, "radius": 4, "buttons": [12, 13, 14, 15] },
+          "face": { "at": [420, 200], "spread": 30, "radius": 15, "buttons": [0, 1, 2, 3] },
+          "middle": [
+            { "button": 8, "at": [256, 190], "radius": 10, "label": [256, 212] },
+            { "button": 9, "at": [324, 190], "radius": 10, "label": [324, 212] },
+            { "button": 16, "at": [290, 156], "radius": 13, "label": [290, 182] }
+          ]
+        },
+        "playstation": {
+          "sticks": [
+            { "axes": [0, 1], "button": 10, "at": [215, 262], "radius": 30, "cap": 13, "label": [215, 304] },
+            { "axes": [2, 3], "button": 11, "at": [365, 262], "radius": 30, "cap": 13, "label": [365, 304] }
+          ],
+          "dpad": { "at": [140, 196], "cell": 22, "radius": 4, "buttons": [12, 13, 14, 15] },
+          "face": { "at": [448, 196], "spread": 30, "radius": 15, "buttons": [0, 1, 2, 3] },
+          "touchpad": { "button": 17, "at": [206, 136], "size": [168, 72], "radius": 10, "label": [290, 172], "text": "Touchpad" },
+          "middle": [
+            { "button": 8, "at": [184, 146], "radius": 8, "label": [184, 167] },
+            { "button": 9, "at": [396, 146], "radius": 8, "label": [396, 167] },
+            { "button": 16, "at": [290, 236], "radius": 11, "label": [290, 254] }
+          ]
+        }
+      },
+      "marks": { "playstation": ["cross", "circle", "square", "triangle"] },
+      "mark": 6,
+      "triangle": [0, -1, 1, 0.75, -1, 0.75],
+      "colours": {
+        "xbox": [6274890, 15026253, 4099831, 15909166],
+        "playstation": [8300256, 15230827, 14127056, 4442536],
+        "pad": [10133933, 10133933, 10133933, 10133933]
+      }
+    },
+
+    "raw": {
+      "at": [40, 506],
+      "heading": { "line": "Raw buttons and axes, as the browser reports them{mapping}" },
+      "mappings": { "standard": " (standard mapping)", "": " (no standard mapping)" },
+      "width": 580,
+      "cells": { "drop": 16, "size": [30, 50], "gap": 4, "index": 10, "bar": [5, 22, 22] },
+      "axes": { "drop": 84, "width": 132, "gap": 12, "bar": [0, 18, 132, 8], "value": [132, 0], "tick": [2, 3], "label": "Axis {n}" }
+    },
+
+    "pads": { "at": [40, 646], "step": 17, "line": "Gamepad {index}  ·  {family}  ·  {mapping}  ·  {id}", "ids": 60, "cut": "…", "used": "   (last used)", "mappings": { "standard": "standard", "": "not mapped" } },
+
+    "table": {
+      "at": [660, 104],
+      "headers": { "action": "ACTION", "keyboard": "KEYBOARD", "pad": "GAMEPAD", "truth": "IN THE TRUTH", "presses": "PRESSES" },
+      "columns": { "action": 0, "keyboard": 140, "pad": 270, "truth": 410, "presses": 580 },
+      "first": 30,
+      "step": 30,
+      "between": " / ",
+      "bar": [0, 3, 90, 10],
+      "box": 22,
+      "dot": 3,
+      "rule": 8,
+      "value": [100, 0],
+      "stickValue": [34, 0],
+      "rest": "at rest"
+    },
+
+    "held": { "at": [660, 560], "heading": "HELD NOW", "drop": 20, "between": "   ", "none": "nothing" },
+
+    "faces": {
+      "xbox": ["A", "B", "X", "Y"],
+      "pad": ["0", "1", "2", "3"]
+    },
+    "labels": {
+      "xbox": { "6": "LT", "7": "RT", "4": "LB", "5": "RB", "8": "View", "9": "Menu", "16": "Home", "10": "L3", "11": "R3" },
+      "playstation": { "6": "L2", "7": "R2", "4": "L1", "5": "R1", "8": "Share", "9": "Options", "16": "PS", "10": "L3", "11": "R3" },
+      "pad": { "6": "6", "7": "7", "4": "4", "5": "5", "8": "8", "9": "9", "16": "16", "10": "10", "11": "11" }
+    },
+    "names": {
+      "xbox": { "Pad0": "A", "Pad1": "B", "Pad2": "X", "Pad3": "Y", "Pad4": "LB", "Pad5": "RB", "Pad6": "LT", "Pad7": "RT", "Pad8": "View", "Pad9": "Menu", "Pad10": "L3", "Pad11": "R3", "Pad16": "Home", "Pad17": "Button 17" },
+      "playstation": { "Pad0": "Cross", "Pad1": "Circle", "Pad2": "Square", "Pad3": "Triangle", "Pad4": "L1", "Pad5": "R1", "Pad6": "L2", "Pad7": "R2", "Pad8": "Share", "Pad9": "Options", "Pad10": "L3", "Pad11": "R3", "Pad16": "PS", "Pad17": "Touchpad" },
+      "pad": { "Pad0": "Button 0", "Pad1": "Button 1", "Pad2": "Button 2", "Pad3": "Button 3", "Pad4": "Button 4", "Pad5": "Button 5", "Pad6": "Button 6", "Pad7": "Button 7", "Pad8": "Button 8", "Pad9": "Button 9", "Pad10": "Button 10", "Pad11": "Button 11", "Pad16": "Button 16", "Pad17": "Button 17" },
+      "keys": {
+        " ": "Space", "Enter": "Enter", "Escape": "Esc", "Backspace": "Backspace", "Tab": "Tab", "Shift": "Shift",
+        "Mouse0": "Left mouse", "Mouse1": "Middle mouse", "Mouse2": "Right mouse",
+        "ArrowLeft": "Left", "ArrowRight": "Right", "ArrowUp": "Up", "ArrowDown": "Down",
+        "Pad12": "D-pad up", "Pad13": "D-pad down", "Pad14": "D-pad left", "Pad15": "D-pad right",
+        "PadStickLeft": "Left stick left", "PadStickRight": "Left stick right", "PadStickUp": "Left stick up", "PadStickDown": "Left stick down",
+        "PadRightStickLeft": "Right stick left", "PadRightStickRight": "Right stick right", "PadRightStickUp": "Right stick up", "PadRightStickDown": "Right stick down"
+      },
+      "groups": {
+        "ArrowLeft": "Arrows", "ArrowRight": "Arrows", "ArrowUp": "Arrows", "ArrowDown": "Arrows",
+        "a": "WASD", "d": "WASD", "w": "WASD", "s": "WASD",
+        "j": "IJKL", "l": "IJKL", "i": "IJKL", "k": "IJKL",
+        "Pad12": "D-pad", "Pad13": "D-pad", "Pad14": "D-pad", "Pad15": "D-pad",
+        "PadStickLeft": "Left stick", "PadStickRight": "Left stick", "PadStickUp": "Left stick", "PadStickDown": "Left stick",
+        "PadRightStickLeft": "Right stick", "PadRightStickRight": "Right stick", "PadRightStickUp": "Right stick", "PadRightStickDown": "Right stick"
+      }
+    }
+  }
+}
