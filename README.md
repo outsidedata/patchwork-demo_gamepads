@@ -34,7 +34,7 @@ Open `http://localhost:5173/games/mygame/index.html`.
   header describing it, and has tests beside it.
 - **Agents.** `.claude/` holds the rules and a skill per kind of work: kinds, levels, HUDs, plugins,
   multiplayer, testing, publishing.
-- **Publishing.** `yarn produce_static_site <game>` writes a static site. The multiplayer server is
+- **Publishing.** `yarn publish_gh_pages_game <game>` puts a game on GitHub Pages. The multiplayer server is
   one Node process.
 
 ## Plugins and addons
@@ -303,6 +303,7 @@ it.
 | `yarn new-game <name>` | `games/<name>/`: a game of one scene and a seat. |
 | `yarn vite` | Serves the repo, so `games/<name>/index.html` plays. |
 | `yarn bake <game>` | The game's art made again from the library: every glb its scripts build, packed, and its texture maps cut. |
+| `yarn publish_gh_pages_game <game> [--owner <owner>]` | The game published to GitHub Pages as `<owner>/patchwork-<game>`, or its published repo brought up to date. |
 | `yarn produce_static_site <game> [--base /<path>/]` | The game as a static site in `dist/`, its page at the site's root. `--base` is the path the host serves it under: `/<repo>/` on GitHub Pages. In a repo whose `games/` holds that game alone, it also copies the game's `README.md` over the repo's. |
 | `yarn test` | Every test but the ones that draw a game in a page. |
 | `yarn test:view [<file>]` | The tests that draw a game in a page (`.view.test.tsx`). |
@@ -312,10 +313,15 @@ it.
 
 ## Putting a game online
 
-`yarn produce_static_site <game> --base /<repo>/` writes `dist/`: the game's `index.html` with every
-file it reaches, compiled to JavaScript, ready for any static host. A repo of your game with a
-GitHub Actions workflow that runs it on every push and uploads `dist/` to Pages puts the game at
-`https://<owner>.github.io/<repo>/`. How the site is laid out is the header of
+`yarn publish_gh_pages_game <game>` puts the game on GitHub Pages, and run again it publishes the
+game's changes. It makes `~/<owner>/patchwork-<game>` from the engine and `games/<game>/`, adds a
+GitHub Actions workflow that builds the site on every push, builds it once to check it, commits, and
+pushes to `<owner>/patchwork-<game>`, creating the repo and Pages the first time. The game is played
+at `https://<owner>.github.io/patchwork-<game>/`. The steps are the header of
+[`scripts/publish_gh_pages_game.ts`](scripts/publish_gh_pages_game.ts).
+
+The build itself is `yarn produce_static_site <game> --base /<repo>/`, which writes `dist/` for any
+static host; how the site is laid out is the header of
 [`scripts/produce_static_site.ts`](scripts/produce_static_site.ts). Running the server for players
 together is [`publishing-a-game`](.claude/skills/publishing-a-game/SKILL.md).
 
