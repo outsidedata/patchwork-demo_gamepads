@@ -357,8 +357,8 @@ Everything you change is a commit in your repo: your game, a new plugin such as
 4. `yarn install`, `yarn tsc`, the tests beside what Patchwork changed, and your game played.
 5. `git switch master`, `git merge update-core`, `git push origin master`.
 
-Each release of Patchwork is one commit, tagged with its date. A game made on an older release runs
-on it: `git clone --branch <tag> --depth 1 https://github.com/outsidedata/patchwork.git`.
+A game made on an older Patchwork runs on the release it was made on: `git clone --branch <tag>
+--depth 1 https://github.com/outsidedata/patchwork.git`.
 
 Git merges line by line, file by file:
 
