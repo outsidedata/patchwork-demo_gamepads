@@ -17,7 +17,7 @@ git clone --origin upstream https://github.com/outsidedata/patchwork.git mygame
 cd mygame
 yarn install
 yarn new-game mygame
-yarn vite
+yarn dev
 ```
 
 Open `http://localhost:5173/games/mygame/index.html`.
@@ -272,9 +272,8 @@ where the truth is.
 
 `yarn new-game <name>` writes `games/<name>/`: one scene, `main`, on render2d, with a seat that
 starts at a `start` actor and moves a square with the arrow keys. `index.html` plays the whole game
-in one tab. For players together, run its server from the repo's root with
-`node --experimental-strip-types games/<name>/<name>.server.ts` and open `client.html`, one window
-a player.
+in one tab. For players together, run `yarn serve <name>` and open
+`http://localhost:5173/games/<name>/client.html`, one window a player.
 
 The example games are their own repo. Clone it as `games/` and open any of them as
 `games/<game>/index.html`:
@@ -287,13 +286,22 @@ git clone https://github.com/outsidedata/patchwork-games.git games
 
 - Node 22.6 or later (it runs TypeScript with `--experimental-strip-types`).
 - Yarn 1.
-- To bake art: Blender, the library of raw parts the bakes read, the native gltfpack 1.3 or later
-  (the native build packs WebP textures), and ImageMagick built with libwebp. Copy
-  `.env.example` to `.env` and set `BLENDER`, `PATCHWORK_LIBRARY`, `GLTFPACK` and `MAGICK` where
-  yours differ from the defaults it lists. Playing a game needs only Node and Yarn.
+- To bake art: Blender, the library of raw parts the bakes read, the clip collection of Mixamo
+  packs, the native gltfpack 1.3 or later (the native build packs WebP textures), and ImageMagick
+  built with libwebp. Copy `.env.example` to `.env` and set where yours differ from its defaults; a
+  variable set in the shell wins over `.env`. Playing a game needs only Node and Yarn.
 
-`yarn health` checks all of it: it runs each tool and prints what passes, what fails and how to fix
-it.
+| variable | what it is | unset |
+|---|---|---|
+| `BLENDER` | Blender's binary, an absolute path. | the macOS application's, `/Applications/Blender.app/Contents/MacOS/Blender` |
+| `PATCHWORK_LIBRARY` | The library the bakes read raw parts from: a rigged character is `characters/<name>/<name>.fbx` in it. | `~/patchwork-library` |
+| `PATCHWORK_CLIPS` | The clip collection the bakes and the asset workshop read Mixamo clips from: its packs are `packs/<pack>/` in it. | `~/troupe-collection` |
+| `GLTFPACK` | gltfpack, the native build. | `gltfpack` on the PATH |
+| `MAGICK` | ImageMagick's `magick`, built with libwebp. | `magick` on the PATH |
+
+`yarn health` checks Node, the packages, `BLENDER`, `PATCHWORK_LIBRARY`, `GLTFPACK` and `MAGICK`, and
+for each game in `games/` that draws cc0-textures maps, whether its maps are baked: it runs each tool
+and prints what passes, what fails and how to fix it.
 
 ## Commands
 
@@ -301,15 +309,16 @@ it.
 |---|---|
 | `yarn health` | Whether this machine has what Patchwork needs: Node, the packages, and for baking, Blender, the library, gltfpack and ImageMagick. |
 | `yarn new-game <name>` | `games/<name>/`: a game of one scene and a seat. |
-| `yarn vite` | Serves the repo, so `games/<name>/index.html` plays. |
+| `yarn dev` | Serves the repo, so `games/<name>/index.html` plays. `localhost:5173` lists every game with a link to each of its pages, and beside its `dev` page a link to each of its scenes, `dev.html?scene=<scene>`. |
+| `yarn serve <game>` | `yarn dev`, and `games/<game>/<game>.server.ts` on Node, so `games/<game>/client.html` plays against it. It prints the client page's address, and every line the server prints after the game's name. A change to a file the server runs starts it again, one that had stopped too. The home page shows the server running and its port. Ctrl-C stops both. |
+| `yarn preview_loading` | The loading screen alone, at `http://localhost:8000/loading.html` (needs `python3`). |
 | `yarn bake <game>` | The game's art made again from the library: every glb its scripts build, packed, and its texture maps cut. |
 | `yarn publish_gh_pages_game <game> [--owner <owner>]` | The game published to GitHub Pages as `<owner>/patchwork-<game>`, or its published repo brought up to date. |
 | `yarn produce_static_site <game> [--base /<path>/]` | The game as a static site in `dist/`, its page at the site's root. `--base` is the path the host serves it under: `/<repo>/` on GitHub Pages. In a repo whose `games/` holds that game alone, it also copies the game's `README.md` over the repo's. |
-| `yarn test` | Every test but the ones that draw a game in a page. |
-| `yarn test:view [<file>]` | The tests that draw a game in a page (`.view.test.tsx`). |
+| `yarn test` | Every test but the ones that play a whole game (`.game.test.ts`, `.predict.test.ts`). |
+| `yarn test:game` | The tests that play a whole game. |
 | `yarn vitest run <file>` | One test file. |
 | `yarn tsc` | The typecheck. |
-| `yarn lint` | ESLint. |
 
 ## Putting a game online
 
